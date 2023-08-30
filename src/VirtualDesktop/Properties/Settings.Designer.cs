@@ -38,7 +38,8 @@ namespace WindowsDesktop.Properties {
   <string>IVirtualDesktopNotificationService,{0CD45E71-D927-4F15-8B0A-8FEF525337BF} </string>
   <string>IVirtualDesktopPinnedApps,{4CE81583-1E4C-4632-A621-07A53543148F} </string>
 </ArrayOfString>")]
-        public global::System.Collections.Specialized.StringCollection v_17134 {
+        public global::System.Collections.Specialized.StringCollection v_17134_0000
+        {
             get {
                 return ((global::System.Collections.Specialized.StringCollection)(this["v_17134"]));
             }
@@ -59,7 +60,8 @@ namespace WindowsDesktop.Properties {
   <string>IVirtualDesktopNotificationService,{0CD45E71-D927-4F15-8B0A-8FEF525337BF} </string>
   <string>IVirtualDesktopPinnedApps,{4CE81583-1E4C-4632-A621-07A53543148F} </string>
 </ArrayOfString>")]
-        public global::System.Collections.Specialized.StringCollection v_16299 {
+        public global::System.Collections.Specialized.StringCollection v_16299_0000
+        {
             get {
                 return ((global::System.Collections.Specialized.StringCollection)(this["v_16299"]));
             }
@@ -80,7 +82,8 @@ namespace WindowsDesktop.Properties {
   <string>IVirtualDesktopNotificationService,{0cd45e71-d927-4f15-8b0a-8fef525337bf}</string>
   <string>IVirtualDesktopPinnedApps,{4CE81583-1E4C-4632-A621-07A53543148F}</string>
 </ArrayOfString>")]
-        public global::System.Collections.Specialized.StringCollection v_22000 {
+        public global::System.Collections.Specialized.StringCollection v_22000_0000
+        {
             get {
                 return ((global::System.Collections.Specialized.StringCollection)(this["v_22000"]));
             }
@@ -101,7 +104,8 @@ namespace WindowsDesktop.Properties {
   <string>IVirtualDesktopNotificationService,{0cd45e71-d927-4f15-8b0a-8fef525337bf}</string>
   <string>IVirtualDesktopPinnedApps,{4CE81583-1E4C-4632-A621-07A53543148F}</string>
 </ArrayOfString>")]
-        public global::System.Collections.Specialized.StringCollection v_22621 {
+        public global::System.Collections.Specialized.StringCollection v_22621_0000
+        {
             get {
                 return ((global::System.Collections.Specialized.StringCollection)(this["v_22621"]));
             }
@@ -122,7 +126,8 @@ namespace WindowsDesktop.Properties {
   <string>IVirtualDesktopNotificationService,{0CD45E71-D927-4F15-8B0A-8FEF525337BF} </string>
   <string>IVirtualDesktopPinnedApps,{4CE81583-1E4C-4632-A621-07A53543148F} </string>
 </ArrayOfString>")]
-        public global::System.Collections.Specialized.StringCollection v_19045 {
+        public global::System.Collections.Specialized.StringCollection v_19045_0000
+        {
             get {
                 return ((global::System.Collections.Specialized.StringCollection)(this["v_19045"]));
             }
