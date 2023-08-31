@@ -94,16 +94,16 @@ namespace WindowsDesktop.Properties {
   <string>IApplicationViewCollection,{1841C6D7-4F9D-42C0-AF41-8747538F10E5}</string>
   <string>IObjectArray,{92CA9DCD-5622-4BBA-A805-5E9F541BD8C9}</string>
   <string>IServiceProvider,{6D5140C1-7436-11CE-8034-00AA006009FA}</string>
-  <string>IVirtualDesktop,{536D3495-B208-4CC9-AE26-DE8111275BF8}</string>
+  <string>IVirtualDesktop,{62FDF88B-11CA-4AFB-8BD8-2296DFAE49E2}</string>
   <string>IVirtualDesktopManager,{A5CD92FF-29BE-454C-8D04-D82879FB3F1B}</string>
-  <string>IVirtualDesktopManagerInternal,{B2F925B9-5A0F-4D2E-9F4D-2B1507593C10}</string>
-  <string>IVirtualDesktopNotification,{cd403e52-deed-4c13-b437-b98380f2b1e8}</string>
+  <string>IVirtualDesktopManagerInternal,{094AFE11-44F2-4BA0-976F-29A97E263EE0}</string>
+  <string>IVirtualDesktopNotification,{f3163e11-6b04-433c-a64b-6f82c9094257}</string>
   <string>IVirtualDesktopNotificationService,{0cd45e71-d927-4f15-8b0a-8fef525337bf}</string>
   <string>IVirtualDesktopPinnedApps,{4CE81583-1E4C-4632-A621-07A53543148F}</string>
 </ArrayOfString>")]
-        public global::System.Collections.Specialized.StringCollection v_22000_0000 {
+        public global::System.Collections.Specialized.StringCollection v_20348_0000 {
             get {
-                return ((global::System.Collections.Specialized.StringCollection)(this["v_22000_0000"]));
+                return ((global::System.Collections.Specialized.StringCollection)(this["v_20348_0000"]));
             }
         }
         
@@ -122,9 +122,9 @@ namespace WindowsDesktop.Properties {
   <string>IVirtualDesktopNotificationService,{0cd45e71-d927-4f15-8b0a-8fef525337bf}</string>
   <string>IVirtualDesktopPinnedApps,{4CE81583-1E4C-4632-A621-07A53543148F}</string>
 </ArrayOfString>")]
-        public global::System.Collections.Specialized.StringCollection v_22621_0000 {
+        public global::System.Collections.Specialized.StringCollection v_22000_0000 {
             get {
-                return ((global::System.Collections.Specialized.StringCollection)(this["v_22621_0000"]));
+                return ((global::System.Collections.Specialized.StringCollection)(this["v_22000_0000"]));
             }
         }
         
