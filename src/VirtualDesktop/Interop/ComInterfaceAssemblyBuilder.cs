@@ -9,7 +9,9 @@ using System.Text;
 using System.Text.RegularExpressions;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.Win32;
 using WindowsDesktop.Properties;
+using WindowsDesktop.Utils;
 
 namespace WindowsDesktop.Interop;
 
@@ -20,10 +22,11 @@ internal class ComInterfaceAssemblyBuilder
     private const string _placeholderAssemblyVersion = "{ASSEMBLY_VERSION}";
     private const string _placeholderInterfaceId = "00000000-0000-0000-0000-000000000000";
 
-    private static readonly Version _requireVersion = new("2.1.0");
-    private static readonly Regex _assemblyRegex = new(@"VirtualDesktop\.(?<build>\d{5}?)(\.\w*|)\.dll");
-    private static readonly Regex _buildNumberRegex = new(@"\.Build(?<build>\d{5})\.");
-    private static readonly int _osBuild = Environment.OSVersion.Version.Build;
+    // TODO: Increment that to force assembly to be regenerated
+    private static readonly Version _requireVersion = new("2.2.1");
+    private static readonly Regex _assemblyRegex = new(@"VirtualDesktop\.(?<build>\d{5}\.\d{4}?)(\.\w*|)\.dll");
+    private static readonly Regex _buildNumberRegex = new(@"\.Build(?<build>\d{5}\.\d{4})\.");
+    private static readonly double osBuild = OS.Build();
     private static ComInterfaceAssembly? _assembly;
 
     private readonly VirtualDesktopCompilerConfiguration _configuration;
@@ -42,8 +45,8 @@ internal class ComInterfaceAssemblyBuilder
         {
             foreach (var file in this._configuration.CompiledAssemblySaveDirectory.GetFiles())
             {
-                if (int.TryParse(_assemblyRegex.Match(file.Name).Groups["build"].ToString(), out var build)
-                    && build == _osBuild)
+                if (double.TryParse(_assemblyRegex.Match(file.Name).Groups["build"].ToString(), out var build)
+                    && build == osBuild)
                 {
                     try
                     {
@@ -82,7 +85,7 @@ internal class ComInterfaceAssemblyBuilder
                 using var reader = new StreamReader(stream, Encoding.UTF8);
                 var sourceCode = reader
                     .ReadToEnd()
-                    .Replace(_placeholderOsBuild, _osBuild.ToString())
+                    .Replace(_placeholderOsBuild, osBuild.ToString())
                     .Replace(_placeholderAssemblyVersion, _requireVersion.ToString(3));
                 compileTargets.Add(sourceCode);
             }
@@ -102,18 +105,18 @@ internal class ComInterfaceAssemblyBuilder
         //           └── 22000, VirtualDesktop.Interop.Build22000..interfaces.IVirtualDesktop.cs
         //   IVirtualDesktopPinnedApps
         //           └── 10240, VirtualDesktop.Interop.Build10240..interfaces.IVirtualDesktopPinnedApps.cs
-        var interfaceSourceFiles = new Dictionary<string, SortedList<int, string>>();
+        var interfaceSourceFiles = new Dictionary<string, SortedList<double, string>>();
 
         foreach (var name in executingAssembly.GetManifestResourceNames())
         {
             var interfaceName = Path.GetFileNameWithoutExtension(name).Split('.').LastOrDefault();
             if (interfaceName != null
                 && interfaceNames.Contains(interfaceName)
-                && int.TryParse(_buildNumberRegex.Match(name).Groups["build"].ToString(), out var build))
+                && double.TryParse(_buildNumberRegex.Match(name.Replace('_','.')).Groups["build"].ToString(), out var build))
             {
                 if (interfaceSourceFiles.TryGetValue(interfaceName, out var sourceFiles) == false)
                 {
-                    sourceFiles = new SortedList<int, string>();
+                    sourceFiles = new SortedList<double, string>();
                     interfaceSourceFiles.Add(interfaceName, sourceFiles);
                 }
 
@@ -126,7 +129,7 @@ internal class ComInterfaceAssemblyBuilder
             var resourceName = sourceFiles.Aggregate("", (current, kvp) =>
             {
                 var (build, resourceName) = kvp;
-                return build <= _osBuild ? resourceName : current;
+                return build <= osBuild ? resourceName : current;
             });
 
             var stream = executingAssembly.GetManifestResourceStream(resourceName);
@@ -144,7 +147,7 @@ internal class ComInterfaceAssemblyBuilder
     {
         try
         {
-            var name = string.Format(_assemblyName, _osBuild);
+            var name = string.Format(_assemblyName, osBuild);
             var syntaxTrees = sources.Select(x => SyntaxFactory.ParseSyntaxTree(x));
             var references = AppDomain.CurrentDomain.GetAssemblies()
                 .Concat(new[] { Assembly.GetExecutingAssembly(), })

@@ -34,9 +34,9 @@ partial class VirtualDesktop
 
     static VirtualDesktop()
     {
-        _provider = Environment.OSVersion.Version.Build switch
+        _provider = OS.Build() switch
         {
-            >= 22621 => new VirtualDesktopProvider22621(),
+            >= 22621.2215 => new VirtualDesktopProvider22621(),
             >= 22000 => new VirtualDesktopProvider22000(),
             >= 10240 => new VirtualDesktopProvider10240(),
             _ => new VirtualDesktopProvider.NotSupported()
@@ -44,7 +44,7 @@ partial class VirtualDesktop
 
         Debug.WriteLine($"*** {AssemblyInfo.Title} Library ***");
         Debug.WriteLine($"Version:  {AssemblyInfo.VersionString}");
-        Debug.WriteLine($"OS Build: {Environment.OSVersion.Version.Build}");
+        Debug.WriteLine($"OS Build: {OS.Build()}");
         Debug.WriteLine($"Provider: {_provider.GetType().Name}");
     }
 

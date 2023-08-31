@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Configuration;
@@ -6,16 +6,18 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using WindowsDesktop.Properties;
 using Microsoft.Win32;
+using System.Globalization;
+using WindowsDesktop.Utils;
 
 namespace WindowsDesktop.Interop;
 
 internal record OsBuildSettings(
-    int osBuild,
+    double osBuild,
     SettingsProperty prop);
 
 internal static class IID
 {
-    private static readonly Regex _osBuildRegex = new(@"v_(?<build>\d{5}?)");
+    private static readonly Regex _osBuildRegex = new(@"v_(?<build>\d{5}_\d{4}?)");
     
     // ReSharper disable once InconsistentNaming
     public static Dictionary<string, Guid> GetIIDs(string[] interfaceNames)
@@ -26,7 +28,7 @@ internal static class IID
         var orderedProps = Settings.Default.Properties.OfType<SettingsProperty>()
             .Select(prop =>
             {
-                if (int.TryParse(_osBuildRegex.Match(prop.Name).Groups["build"].ToString(), out var build))
+                if (double.TryParse(_osBuildRegex.Match(prop.Name).Groups["build"].ToString().Replace('_','.'), NumberStyles.Any, CultureInfo.InvariantCulture, out var build))
                 {
                     return new OsBuildSettings(build, prop);
                 }
@@ -39,7 +41,7 @@ internal static class IID
 
         // Find first prop with build version <= current OS version
         var selectedSettings = orderedProps.FirstOrDefault(p =>
-            p.osBuild <= Environment.OSVersion.Version.Build
+            p.osBuild <= OS.Build()
         );
         
         if (selectedSettings == null)
@@ -47,7 +49,7 @@ internal static class IID
             var supportedBuilds = orderedProps.Select(v => v.osBuild).ToArray();
             throw new ConfigurationException(
                 "Invalid application configuration. Unable to determine interop interfaces for " +
-                $"current OS Build: {Environment.OSVersion.Version.Build}. All configured OS Builds " +
+                $"current OS Build: {OS.Build()}. All configured OS Builds " +
                 $"have build version greater than current OS: {supportedBuilds}");
         }
 

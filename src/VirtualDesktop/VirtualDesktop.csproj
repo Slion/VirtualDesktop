@@ -46,23 +46,23 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Interop\Build22621\.interfaces\IVirtualDesktop.cs" />
-    <EmbeddedResource Include="Interop\Build22621\.interfaces\IVirtualDesktopManagerInternal.cs" />
-    <EmbeddedResource Include="Interop\Build22621\.interfaces\IVirtualDesktopNotification.cs" />
-    <EmbeddedResource Include="Interop\Build22621\.interfaces\IVirtualDesktopNotificationService.cs" />
+    <EmbeddedResource Include="Interop\Build22621_2215\.interfaces\IVirtualDesktop.cs" />
+    <EmbeddedResource Include="Interop\Build22621_2215\.interfaces\IVirtualDesktopManagerInternal.cs" />
+    <EmbeddedResource Include="Interop\Build22621_2215\.interfaces\IVirtualDesktopNotification.cs" />
+    <EmbeddedResource Include="Interop\Build22621_2215\.interfaces\IVirtualDesktopNotificationService.cs" />
     <None Remove="VirtualDesktop.csproj.DotSettings" />
-    <EmbeddedResource Include="Interop\Build10240\.interfaces\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Interop\Build10240\.interfaces\IApplicationView.cs" />
-    <EmbeddedResource Include="Interop\Build10240\.interfaces\IApplicationViewCollection.cs" />
-    <EmbeddedResource Include="Interop\Build10240\.interfaces\IVirtualDesktop.cs" />
-    <EmbeddedResource Include="Interop\Build10240\.interfaces\IVirtualDesktopManagerInternal.cs" />
-    <EmbeddedResource Include="Interop\Build10240\.interfaces\IVirtualDesktopNotification.cs" />
-    <EmbeddedResource Include="Interop\Build10240\.interfaces\IVirtualDesktopNotificationService.cs" />
-    <EmbeddedResource Include="Interop\Build10240\.interfaces\IVirtualDesktopPinnedApps.cs" />
-    <EmbeddedResource Include="Interop\Build22000\.interfaces\IVirtualDesktop.cs" />
-    <EmbeddedResource Include="Interop\Build22000\.interfaces\IVirtualDesktopManagerInternal.cs" />
-    <EmbeddedResource Include="Interop\Build22000\.interfaces\IVirtualDesktopNotification.cs" />
-    <EmbeddedResource Include="Interop\Build22000\.interfaces\IVirtualDesktopNotificationService.cs" />
+    <EmbeddedResource Include="Interop\Build10240_0000\.interfaces\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Interop\Build10240_0000\.interfaces\IApplicationView.cs" />
+    <EmbeddedResource Include="Interop\Build10240_0000\.interfaces\IApplicationViewCollection.cs" />
+    <EmbeddedResource Include="Interop\Build10240_0000\.interfaces\IVirtualDesktop.cs" />
+    <EmbeddedResource Include="Interop\Build10240_0000\.interfaces\IVirtualDesktopManagerInternal.cs" />
+    <EmbeddedResource Include="Interop\Build10240_0000\.interfaces\IVirtualDesktopNotification.cs" />
+    <EmbeddedResource Include="Interop\Build10240_0000\.interfaces\IVirtualDesktopNotificationService.cs" />
+    <EmbeddedResource Include="Interop\Build10240_0000\.interfaces\IVirtualDesktopPinnedApps.cs" />
+    <EmbeddedResource Include="Interop\Build22000_0000\.interfaces\IVirtualDesktop.cs" />
+    <EmbeddedResource Include="Interop\Build22000_0000\.interfaces\IVirtualDesktopManagerInternal.cs" />
+    <EmbeddedResource Include="Interop\Build22000_0000\.interfaces\IVirtualDesktopNotification.cs" />
+    <EmbeddedResource Include="Interop\Build22000_0000\.interfaces\IVirtualDesktopNotificationService.cs" />
     <None Include="..\..\LICENSE">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
@@ -82,6 +82,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
