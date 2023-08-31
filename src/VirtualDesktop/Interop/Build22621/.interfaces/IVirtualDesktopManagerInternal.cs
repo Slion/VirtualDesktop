@@ -2,7 +2,7 @@
 using System.Runtime.InteropServices;
 using WindowsDesktop.Interop.Build10240;
 
-namespace WindowsDesktop.Interop.Build22000
+namespace WindowsDesktop.Interop.Build22621
 {
     [ComImport]
     [Guid("00000000-0000-0000-0000-000000000000") /* replace at runtime */]
@@ -15,17 +15,17 @@ namespace WindowsDesktop.Interop.Build22000
 
         bool CanViewMoveDesktops(IApplicationView pView);
 
-        IVirtualDesktop GetCurrentDesktop(IntPtr hWndOrMon);
+        IVirtualDesktop GetCurrentDesktop();
 
         IObjectArray GetDesktops();
 
         IVirtualDesktop GetAdjacentDesktop(IVirtualDesktop pDesktopReference, int uDirection);
 
-        void SwitchDesktop(IntPtr hWndOrMon, IVirtualDesktop desktop);
+        void SwitchDesktop(IVirtualDesktop desktop);
 
-        IVirtualDesktop CreateDesktopW(IntPtr hWndOrMon);
+        IVirtualDesktop CreateDesktop();
 
-        void MoveDesktop(IVirtualDesktop desktop, IntPtr hWndOrMon, int nIndex);
+        void MoveDesktop(IVirtualDesktop desktop, int nIndex);
 
         void RemoveDesktop(IVirtualDesktop pRemove, IVirtualDesktop pFallbackDesktop);
 
@@ -41,7 +41,8 @@ namespace WindowsDesktop.Interop.Build22000
 
         void CopyDesktopState(IApplicationView pView0, IApplicationView pView1);
 
-        IVirtualDesktop CreateRemoteDesktop([MarshalAs(UnmanagedType.HString)] string name);
+        IVirtualDesktop CreateRemoteDesktop(HString name);
+        
         void SwitchRemoteDesktop(IVirtualDesktop desktop);
         
         void SwitchDesktopWithAnimation(IVirtualDesktop desktop);

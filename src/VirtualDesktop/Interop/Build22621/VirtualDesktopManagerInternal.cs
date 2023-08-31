@@ -17,7 +17,7 @@ internal class VirtualDesktopManagerInternal : ComWrapperBase<IVirtualDesktopMan
 
     public IEnumerable<IVirtualDesktop> GetDesktops()
     {
-        var array = this.InvokeMethod<IObjectArray>(Args(IntPtr.Zero));
+        var array = this.InvokeMethod<IObjectArray>();
         if (array == null) yield break;
 
         var count = array.GetCount();
@@ -31,7 +31,7 @@ internal class VirtualDesktopManagerInternal : ComWrapperBase<IVirtualDesktopMan
     }
 
     public IVirtualDesktop GetCurrentDesktop()
-        => this.InvokeMethodAndWrap(Args(IntPtr.Zero));
+        => this.InvokeMethodAndWrap();
 
     public IVirtualDesktop GetAdjacentDesktop(IVirtualDesktop pDesktopReference, AdjacentDesktop uDirection)
         => this.InvokeMethodAndWrap(Args(((VirtualDesktop)pDesktopReference).ComObject, uDirection));
@@ -40,10 +40,10 @@ internal class VirtualDesktopManagerInternal : ComWrapperBase<IVirtualDesktopMan
         => this.InvokeMethodAndWrap(Args(desktopId));
 
     public IVirtualDesktop CreateDesktop()
-        => this.InvokeMethodAndWrap(Args(IntPtr.Zero));
+        => this.InvokeMethodAndWrap();
 
     public void SwitchDesktop(IVirtualDesktop desktop)
-        => this.InvokeMethod(Args(IntPtr.Zero, ((VirtualDesktop)desktop).ComObject));
+        => this.InvokeMethod(Args(((VirtualDesktop)desktop).ComObject));
 
     public void RemoveDesktop(IVirtualDesktop pRemove, IVirtualDesktop pFallbackDesktop)
         => this.InvokeMethod(Args(((VirtualDesktop)pRemove).ComObject, ((VirtualDesktop)pFallbackDesktop).ComObject));

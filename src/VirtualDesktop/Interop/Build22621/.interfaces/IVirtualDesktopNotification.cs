@@ -2,28 +2,28 @@
 using System.Runtime.InteropServices;
 using WindowsDesktop.Interop.Build10240;
 
-namespace WindowsDesktop.Interop.Build22000
+namespace WindowsDesktop.Interop.Build22621
 {
     [ComImport]
     [Guid("00000000-0000-0000-0000-000000000000") /* replace at runtime */]
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IVirtualDesktopNotification
     {
-        void VirtualDesktopCreated(IObjectArray p0, IVirtualDesktop pDesktop);
+        void VirtualDesktopCreated(IVirtualDesktop pDesktop);
 
-        void VirtualDesktopDestroyBegin(IObjectArray p0, IVirtualDesktop pDesktopDestroyed, IVirtualDesktop pDesktopFallback);
+        void VirtualDesktopDestroyBegin(IVirtualDesktop pDesktopDestroyed, IVirtualDesktop pDesktopFallback);
 
-        void VirtualDesktopDestroyFailed(IObjectArray p0, IVirtualDesktop pDesktopDestroyed, IVirtualDesktop pDesktopFallback);
+        void VirtualDesktopDestroyFailed(IVirtualDesktop pDesktopDestroyed, IVirtualDesktop pDesktopFallback);
 
-        void VirtualDesktopDestroyed(IObjectArray p0, IVirtualDesktop pDesktopDestroyed, IVirtualDesktop pDesktopFallback);
+        void VirtualDesktopDestroyed(IVirtualDesktop pDesktopDestroyed, IVirtualDesktop pDesktopFallback);
 
-        void VirtualDesktopMoved(IObjectArray p0, IVirtualDesktop pDesktop, int nIndexFrom, int nIndexTo);
+        void VirtualDesktopMoved(IVirtualDesktop pDesktop, int nIndexFrom, int nIndexTo);
 
         void VirtualDesktopRenamed(IVirtualDesktop pDesktop, HString chName);
 
         void ViewVirtualDesktopChanged(IApplicationView pView);
 
-        void CurrentVirtualDesktopChanged(IObjectArray p0, IVirtualDesktop pDesktopOld, IVirtualDesktop pDesktopNew);
+        void CurrentVirtualDesktopChanged(IVirtualDesktop pDesktopOld, IVirtualDesktop pDesktopNew);
 
         void VirtualDesktopWallpaperChanged(IVirtualDesktop pDesktop, HString chPath);
         
@@ -34,29 +34,29 @@ namespace WindowsDesktop.Interop.Build22000
 
     internal class VirtualDesktopNotification : VirtualDesktopNotificationService.EventListenerBase, IVirtualDesktopNotification
     {
-        public void VirtualDesktopCreated(IObjectArray p0, IVirtualDesktop pDesktop)
+        public void VirtualDesktopCreated(IVirtualDesktop pDesktop)
         {
             this.CreatedCore(pDesktop);
         }
 
-        public void VirtualDesktopDestroyBegin(IObjectArray p0, IVirtualDesktop pDesktopDestroyed, IVirtualDesktop pDesktopFallback)
+        public void VirtualDesktopDestroyBegin(IVirtualDesktop pDesktopDestroyed, IVirtualDesktop pDesktopFallback)
         {
             this.DestroyBeginCore(pDesktopDestroyed, pDesktopFallback);
         }
 
-        public void VirtualDesktopDestroyFailed(IObjectArray p0, IVirtualDesktop pDesktopDestroyed, IVirtualDesktop pDesktopFallback)
+        public void VirtualDesktopDestroyFailed(IVirtualDesktop pDesktopDestroyed, IVirtualDesktop pDesktopFallback)
         {
             this.DestroyFailedCore(pDesktopDestroyed, pDesktopFallback);
         }
 
-        public void VirtualDesktopDestroyed(IObjectArray p0, IVirtualDesktop pDesktopDestroyed, IVirtualDesktop pDesktopFallback)
+        public void VirtualDesktopDestroyed(IVirtualDesktop pDesktopDestroyed, IVirtualDesktop pDesktopFallback)
         {
             this.DestroyedCore(pDesktopDestroyed, pDesktopFallback);
         }
 
-        public void VirtualDesktopMoved(IObjectArray p0, IVirtualDesktop pDesktop, int nIndexFrom, int nIndexTo)
+        public void VirtualDesktopMoved(IVirtualDesktop pDesktop, int nIndexFrom, int nIndexTo)
         {
-            this.MovedCore(p0, pDesktop, nIndexFrom, nIndexTo);
+            this.MovedCore(pDesktop, nIndexFrom, nIndexTo);
         }
 
         public void VirtualDesktopRenamed(IVirtualDesktop pDesktop, HString chName)
@@ -69,7 +69,7 @@ namespace WindowsDesktop.Interop.Build22000
             this.ViewChangedCore(pView);
         }
 
-        public void CurrentVirtualDesktopChanged(IObjectArray p0, IVirtualDesktop pDesktopOld, IVirtualDesktop pDesktopNew)
+        public void CurrentVirtualDesktopChanged(IVirtualDesktop pDesktopOld, IVirtualDesktop pDesktopNew)
         {
             this.CurrentChangedCore(pDesktopOld, pDesktopNew);
         }
@@ -81,12 +81,12 @@ namespace WindowsDesktop.Interop.Build22000
         
         public IVirtualDesktop VirtualDesktopSwitched()
         {
-            this.VirtualDesktopSwitched();
+            return this.VirtualDesktopSwitched();
         }
 
         public IVirtualDesktop RemoteVirtualDesktopConnected()
         {
-            this.RemoteVirtualDesktopConnected();
+            return this.RemoteVirtualDesktopConnected();
         }
         
     }
