@@ -11,6 +11,8 @@ public interface IVirtualDesktopNotification
 
     void VirtualDesktopDestroyed(IVirtualDesktop pDesktopDestroyed, IVirtualDesktop pDesktopFallback);
 
+    void VirtualDesktopIsPerMonitorChanged(int i);
+
     void VirtualDesktopMoved(IVirtualDesktop pDesktop, int nIndexFrom, int nIndexTo);
 
     void VirtualDesktopRenamed(IVirtualDesktop pDesktop, string chName);

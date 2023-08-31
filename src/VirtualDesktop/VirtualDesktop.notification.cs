@@ -99,6 +99,12 @@ partial class VirtualDesktop
         public void VirtualDesktopDestroyed(IVirtualDesktop pDesktopDestroyed, IVirtualDesktop pDesktopFallback)
             => Destroyed?.Invoke(this, new VirtualDesktopDestroyEventArgs(pDesktopDestroyed, pDesktopFallback));
 
+        public void VirtualDesktopIsPerMonitorChanged(int i)
+        {
+            
+        }
+
+
         public void VirtualDesktopMoved(IVirtualDesktop pDesktop, int nIndexFrom, int nIndexTo)
             => Moved?.Invoke(this, new VirtualDesktopMovedEventArgs(pDesktop, nIndexFrom, nIndexTo));
 

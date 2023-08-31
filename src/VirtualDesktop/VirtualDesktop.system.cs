@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using WindowsDesktop.Interop;
 using WindowsDesktop.Interop.Build10240;
+using WindowsDesktop.Interop.Build20348;
 using WindowsDesktop.Interop.Build22000;
 using WindowsDesktop.Interop.Build22621;
 using WindowsDesktop.Interop.Proxy;
@@ -36,8 +37,9 @@ partial class VirtualDesktop
     {
         _provider = OS.Build() switch
         {
-            >= 22621.2215 => new VirtualDesktopProvider22621(),
-            >= 22000 => new VirtualDesktopProvider22000(),
+            >= 22621.2215 => new VirtualDesktopProvider22621(), // Windows 11 22H2
+            >= 22000 => new VirtualDesktopProvider22000(),      //Windows 11 21H2
+            >= 20348 => new VirtualDesktopProvider20348(),      // Windows Server 2022
             >= 10240 => new VirtualDesktopProvider10240(),
             _ => new VirtualDesktopProvider.NotSupported()
         };
