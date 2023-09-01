@@ -14,11 +14,11 @@ namespace WindowsDesktop.Interop.Build10240
     [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     public interface IApplicationView
     {
-        void Proc3();
+        void GetIids(out ulong iidCount, out IntPtr iids);
 
-        void Proc4();
+        HString GetRuntimeClassName();
 
-        void Proc5();
+        IntPtr GetTrustLevel();
 
         void SetFocus();
 
