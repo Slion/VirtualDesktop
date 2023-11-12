@@ -1,5 +1,7 @@
-﻿using System.Diagnostics;
-
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
 using WindowsDesktop.Interop;
 using WindowsDesktop.Interop.Proxy;
 
@@ -71,8 +73,7 @@ public partial class VirtualDesktop
     /// <param name="fallbackDesktop">A virtual desktop to be displayed after the virtual desktop is removed.</param>
     public void Remove(VirtualDesktop fallbackDesktop)
     {
-        if(fallbackDesktop == null)
-            throw new ArgumentNullException(nameof(fallbackDesktop));
+        if (fallbackDesktop == null) throw new ArgumentNullException(nameof(fallbackDesktop));
 
         _provider.VirtualDesktopManagerInternal.RemoveDesktop(this._source, fallbackDesktop._source);
     }
@@ -153,8 +154,7 @@ public partial class VirtualDesktop
     /// </summary>
     public static void Move(VirtualDesktop desktop, int index)
     {
-        if(index < 0 || index >= GetDesktops().Count())
-            throw new Exception($"Invalid index: {index}");
+        if (index < 0 || index >= GetDesktops().Count()) throw new Exception($"Invalid index: {index}");
 
         _provider.VirtualDesktopManagerInternal.MoveDesktop(desktop._source, index);
     }
@@ -182,8 +182,7 @@ public partial class VirtualDesktop
     {
         InitializeIfNeeded();
 
-        if(hWnd == IntPtr.Zero || IsPinnedWindow(hWnd))
-            return null;
+        if (hWnd == IntPtr.Zero || IsPinnedWindow(hWnd)) return null;
 
         return SafeInvoke(
             () =>
@@ -304,13 +303,13 @@ public partial class VirtualDesktop
         InitializeIfNeeded();
 
         var result = PInvoke.GetWindowThreadProcessId(hWnd, out var processId);
-        if(result < 0)
-            throw new Exception($"The process associated with '{hWnd}' not found.");
+        if (result < 0) throw new Exception($"The process associated with '{hWnd}' not found.");
 
-        if(processId == Environment.ProcessId)
+        if (processId == Environment.ProcessId)
         {
             _provider.VirtualDesktopManager.MoveWindowToDesktop(hWnd, virtualDesktop.Id);
-        } else
+        }
+        else
         {
             _provider.VirtualDesktopManagerInternal.MoveViewToDesktop(hWnd, virtualDesktop._source);
         }
@@ -343,7 +342,8 @@ public partial class VirtualDesktop
                 .GetViewForHwnd(hWnd)
                 .GetAppUserModelId();
             return true;
-        } catch(Exception ex)
+        }
+        catch (Exception ex)
         {
             Debug.WriteLine($"{nameof(TryGetAppUserModelId)} failed.");
             Debug.WriteLine(ex);

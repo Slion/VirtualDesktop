@@ -1,10 +1,11 @@
-﻿using System.Runtime.CompilerServices;
-
+﻿﻿using System;
+using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using WindowsDesktop.Interop.Proxy;
 
 namespace WindowsDesktop.Interop.Build10240;
 
-internal class VirtualDesktopManagerInternal: ComWrapperBase<IVirtualDesktopManagerInternal>, IVirtualDesktopManagerInternal
+internal class VirtualDesktopManagerInternal : ComWrapperBase<IVirtualDesktopManagerInternal>, IVirtualDesktopManagerInternal
 {
     private readonly ComWrapperFactory _factory;
 
@@ -17,13 +18,12 @@ internal class VirtualDesktopManagerInternal: ComWrapperBase<IVirtualDesktopMana
     public IEnumerable<IVirtualDesktop> GetDesktops()
     {
         var array = this.InvokeMethod<IObjectArray>();
-        if(array == null)
-            yield break;
+        if (array == null) yield break;
 
         var count = array.GetCount();
         var vdType = this.ComInterfaceAssembly.GetType(nameof(IVirtualDesktop));
 
-        for(var i = 0u; i < count; i++)
+        for (var i = 0u; i < count; i++)
         {
             var ppvObject = array.GetAt(i, vdType.GUID);
             yield return new VirtualDesktop(this.ComInterfaceAssembly, ppvObject);
