@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -10,9 +9,10 @@ using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+
 using Microsoft.Win32;
+
 using WindowsDesktop;
-using WindowsDesktop.Properties;
 
 namespace VirtualDesktopShowcase;
 
@@ -44,7 +44,8 @@ partial class MainWindow
 
         VirtualDesktop.CurrentChanged += (_, args) =>
         {
-            foreach (var desktop in this.Desktops) desktop.IsCurrent = desktop.Id == args.NewDesktop.Id;
+            foreach(var desktop in this.Desktops)
+                desktop.IsCurrent = desktop.Id == args.NewDesktop.Id;
             Debug.WriteLine($"Switched: {args.OldDesktop.Name} -> {args.NewDesktop.Name}");
         };
 
@@ -62,30 +63,34 @@ partial class MainWindow
             this.Dispatcher.Invoke(() =>
             {
                 var target = this.Desktops.FirstOrDefault(x => x.Id == args.Destroyed.Id);
-                if (target != null) this.Desktops.Remove(target);
+                if(target != null)
+                    this.Desktops.Remove(target);
             });
         };
 
         VirtualDesktop.Renamed += (_, args) =>
         {
             var desktop = this.Desktops.FirstOrDefault(x => x.Id == args.Desktop.Id);
-            if (desktop != null) desktop.Name = args.Name;
+            if(desktop != null)
+                desktop.Name = args.Name;
             Debug.WriteLine($"Renamed: {args.Desktop}");
         };
 
         VirtualDesktop.WallpaperChanged += (_, args) =>
         {
             var desktop = this.Desktops.FirstOrDefault(x => x.Id == args.Desktop.Id);
-            if (desktop != null) desktop.WallpaperPath = new Uri(args.Path);
+            if(desktop != null)
+                desktop.WallpaperPath = new Uri(args.Path);
             Debug.WriteLine($"Wallpaper changed: {args.Desktop}, {args.Path}");
         };
 
         var currentId = VirtualDesktop.Current.Id;
 
-        foreach (var desktop in VirtualDesktop.GetDesktops())
+        foreach(var desktop in VirtualDesktop.GetDesktops())
         {
             var vm = new VirtualDesktopViewModel(desktop);
-            if (desktop.Id == currentId) vm.IsCurrent = true;
+            if(desktop.Id == currentId)
+                vm.IsCurrent = true;
 
             this.Desktops.Add(vm);
         }
@@ -100,7 +105,7 @@ partial class MainWindow
             this.Dispatcher.Invoke(() =>
             {
                 var parent = VirtualDesktop.FromHwnd(handle);
-                foreach (var desktop in this.Desktops)
+                foreach(var desktop in this.Desktops)
                 {
                     desktop.ShowcaseMessage = parent == null
                         ? "(this window is pinned)"
@@ -125,16 +130,16 @@ partial class MainWindow
     {
         var desktop = VirtualDesktop.Create();
 
-        if (this.ThisWindowMenu.IsChecked ?? true)
+        if(this.ThisWindowMenu.IsChecked ?? true)
         {
             desktop.SwitchAndMove(this);
-        }
-        else
+        } else
         {
             await Task.Delay(_delay);
 
             var handle = GetForegroundWindow();
-            if (VirtualDesktop.IsPinnedWindow(handle) == false) VirtualDesktop.MoveToDesktop(handle, desktop);
+            if(VirtualDesktop.IsPinnedWindow(handle) == false)
+                VirtualDesktop.MoveToDesktop(handle, desktop);
             desktop.Switch();
         }
     }
@@ -147,18 +152,19 @@ partial class MainWindow
     private async void SwitchLeftAndMove(object sender, RoutedEventArgs e)
     {
         var left = VirtualDesktop.Current.GetLeft();
-        if (left == null) return;
+        if(left == null)
+            return;
 
-        if (this.ThisWindowMenu.IsChecked ?? true)
+        if(this.ThisWindowMenu.IsChecked ?? true)
         {
             left.SwitchAndMove(this);
-        }
-        else
+        } else
         {
             await Task.Delay(_delay);
 
             var handle = GetForegroundWindow();
-            if (VirtualDesktop.IsPinnedWindow(handle) == false) VirtualDesktop.MoveToDesktop(handle, left);
+            if(VirtualDesktop.IsPinnedWindow(handle) == false)
+                VirtualDesktop.MoveToDesktop(handle, left);
             left.Switch();
         }
     }
@@ -171,29 +177,29 @@ partial class MainWindow
     private async void SwitchRightAndMove(object sender, RoutedEventArgs e)
     {
         var right = VirtualDesktop.Current.GetRight();
-        if (right == null) return;
+        if(right == null)
+            return;
 
-        if (this.ThisWindowMenu.IsChecked ?? true)
+        if(this.ThisWindowMenu.IsChecked ?? true)
         {
             right.SwitchAndMove(this);
-        }
-        else
+        } else
         {
             await Task.Delay(_delay);
 
             var handle = GetForegroundWindow();
-            if (VirtualDesktop.IsPinnedWindow(handle) == false) VirtualDesktop.MoveToDesktop(handle, right);
+            if(VirtualDesktop.IsPinnedWindow(handle) == false)
+                VirtualDesktop.MoveToDesktop(handle, right);
             right.Switch();
         }
     }
 
     private async void Pin(object sender, RoutedEventArgs e)
     {
-        if (this.ThisWindowMenu.IsChecked ?? true)
+        if(this.ThisWindowMenu.IsChecked ?? true)
         {
             this.TogglePin();
-        }
-        else
+        } else
         {
             await Task.Delay(_delay);
 
@@ -204,15 +210,14 @@ partial class MainWindow
 
     private async void PinApp(object sender, RoutedEventArgs e)
     {
-        if (this.ThisWindowMenu.IsChecked ?? true)
+        if(this.ThisWindowMenu.IsChecked ?? true)
         {
             Application.Current.TogglePin();
-        }
-        else
+        } else
         {
             await Task.Delay(_delay);
 
-            if (VirtualDesktop.TryGetAppUserModelId(GetForegroundWindow(), out var appId))
+            if(VirtualDesktop.TryGetAppUserModelId(GetForegroundWindow(), out var appId))
             {
                 (VirtualDesktop.IsPinnedApplication(appId) ? VirtualDesktop.UnpinApplication : (Func<string, bool>)VirtualDesktop.PinApplication)(appId);
             }
@@ -224,9 +229,33 @@ partial class MainWindow
         VirtualDesktop.Current.Remove();
     }
 
+    private void MoveLeft(object sender, RoutedEventArgs e)
+    {
+        foreach(var it in this.Desktops.Select((x, i) => new { Desktop = x, Index = i }))
+        {
+            if(it.Desktop.IsCurrent && it.Index > 0)
+            {
+                Debug.WriteLine($"Moved: {it.Index} -> {it.Index - 1}");
+                VirtualDesktop.Move(VirtualDesktop.Current, it.Index - 1);
+            }
+        }
+    }
+
+    private void MoveRight(object sender, RoutedEventArgs e)
+    {
+        foreach(var it in this.Desktops.Select((x, i) => new { Desktop = x, Index = i }))
+        {
+            if(it.Desktop.IsCurrent && (it.Index < (this.Desktops.Count - 1)))
+            {
+                Debug.WriteLine($"Moved: {it.Index} -> {it.Index + 1}");
+                VirtualDesktop.Move(VirtualDesktop.Current, it.Index + 1);
+            }
+        }
+    }
+
     private void SwitchDesktop(object sender, RoutedEventArgs e)
     {
-        if (sender is Button { DataContext: VirtualDesktopViewModel vm })
+        if(sender is Button { DataContext: VirtualDesktopViewModel vm })
         {
             VirtualDesktop.FromId(vm.Id)?.SwitchAndMove(this);
         }
@@ -234,7 +263,7 @@ partial class MainWindow
 
     private void ChangeWallpaper(object sender, RoutedEventArgs e)
     {
-        if (sender is Button { DataContext: VirtualDesktopViewModel vm })
+        if(sender is Button { DataContext: VirtualDesktopViewModel vm })
         {
             var dialog = new OpenFileDialog()
             {
@@ -242,11 +271,12 @@ partial class MainWindow
                 Filter = "Desktop wallpaper (*.jpg, *.png, *.bmp)|*.jpg;*.png;*.bmp",
             };
 
-            if ((dialog.ShowDialog(this) ?? false)
+            if((dialog.ShowDialog(this) ?? false)
                 && File.Exists(dialog.FileName))
             {
                 var desktop = VirtualDesktop.FromId(vm.Id);
-                if (desktop != null) desktop.WallpaperPath = dialog.FileName;
+                if(desktop != null)
+                    desktop.WallpaperPath = dialog.FileName;
             }
         }
 
@@ -257,7 +287,7 @@ partial class MainWindow
     private static extern IntPtr GetForegroundWindow();
 }
 
-public class VirtualDesktopViewModel : INotifyPropertyChanged
+public class VirtualDesktopViewModel: INotifyPropertyChanged
 {
     private string _name;
     private Uri? _wallpaperPath;
@@ -273,7 +303,7 @@ public class VirtualDesktopViewModel : INotifyPropertyChanged
         get => this._name;
         set
         {
-            if (this._name != value)
+            if(this._name != value)
             {
                 this._name = value;
                 this.OnPropertyChanged();
@@ -286,7 +316,7 @@ public class VirtualDesktopViewModel : INotifyPropertyChanged
         get => this._wallpaperPath;
         set
         {
-            if (this._wallpaperPath != value)
+            if(this._wallpaperPath != value)
             {
                 this._wallpaperPath = value;
                 this.OnPropertyChanged();
@@ -299,7 +329,7 @@ public class VirtualDesktopViewModel : INotifyPropertyChanged
         get => this._showcaseMessage;
         set
         {
-            if (this._showcaseMessage != value)
+            if(this._showcaseMessage != value)
             {
                 this._showcaseMessage = value;
                 this.OnPropertyChanged();
@@ -312,7 +342,7 @@ public class VirtualDesktopViewModel : INotifyPropertyChanged
         get => this._isCurrent;
         set
         {
-            if (this._isCurrent != value)
+            if(this._isCurrent != value)
             {
                 this._isCurrent = value;
                 this.OnPropertyChanged();
