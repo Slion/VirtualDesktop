@@ -248,7 +248,7 @@ partial class MainWindow
         }
     }
 
-private void SwitchDesktop(object sender, RoutedEventArgs e)
+    private void SwitchDesktop(object sender, RoutedEventArgs e)
     {
         if (sender is Button { DataContext: VirtualDesktopViewModel vm })
         {
