@@ -152,11 +152,11 @@ public partial class VirtualDesktop
     /// <summary>
     /// Move the given desktop to another posision.
     /// </summary>
-    public static void Move(VirtualDesktop desktop, int index)
+    public void Move(int index)
     {
         if (index < 0 || index >= GetDesktops().Count()) throw new Exception($"Invalid index: {index}");
 
-        _provider.VirtualDesktopManagerInternal.MoveDesktop(desktop._source, index);
+        _provider.VirtualDesktopManagerInternal.MoveDesktop(this._source, index);
     }
 
     /// <summary>

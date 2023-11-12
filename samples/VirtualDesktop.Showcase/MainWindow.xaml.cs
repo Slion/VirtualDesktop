@@ -231,7 +231,7 @@ partial class MainWindow
             if (it.Desktop.IsCurrent && it.Index > 0)
             {
                 Debug.WriteLine($"Moved: {it.Index} -> {it.Index - 1}");
-                VirtualDesktop.Move(VirtualDesktop.Current, it.Index - 1);
+                VirtualDesktop.Current.Move(it.Index - 1);
             }
         }
     }
@@ -243,7 +243,7 @@ partial class MainWindow
             if (it.Desktop.IsCurrent && (it.Index < (this.Desktops.Count - 1)))
             {
                 Debug.WriteLine($"Moved: {it.Index} -> {it.Index + 1}");
-                VirtualDesktop.Move(VirtualDesktop.Current, it.Index + 1);
+                VirtualDesktop.Current.Move(it.Index + 1);
             }
         }
     }
