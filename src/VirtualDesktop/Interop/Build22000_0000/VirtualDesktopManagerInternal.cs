@@ -46,7 +46,7 @@ internal class VirtualDesktopManagerInternal : ComWrapperBase<IVirtualDesktopMan
         => this.InvokeMethod(Args(IntPtr.Zero, ((VirtualDesktop)desktop).ComObject));
 
     public void MoveDesktop(IVirtualDesktop pMove, int nIndex)
-        => this.InvokeMethod(Args(((VirtualDesktop)pMove).ComObject, nIndex));
+        => this.InvokeMethod(Args(((VirtualDesktop)pMove).ComObject, IntPtr.Zero, nIndex));
 
     public void RemoveDesktop(IVirtualDesktop pRemove, IVirtualDesktop pFallbackDesktop)
         => this.InvokeMethod(Args(((VirtualDesktop)pRemove).ComObject, ((VirtualDesktop)pFallbackDesktop).ComObject));
