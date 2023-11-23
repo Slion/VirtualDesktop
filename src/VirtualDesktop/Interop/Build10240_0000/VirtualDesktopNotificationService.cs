@@ -65,7 +65,7 @@ public class VirtualDesktopNotificationService : ComWrapperBase<IVirtualDesktopN
 
         protected void CurrentChangedCore(object pDesktopOld, object pDesktopNew)
             => this.Notification.CurrentVirtualDesktopChanged(this.Wrap(pDesktopOld), this.Wrap(pDesktopNew));
-        
+
         private IVirtualDesktop Wrap(object desktop)
             => this.Factory.VirtualDesktop(desktop).Interface;
     }

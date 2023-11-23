@@ -26,9 +26,9 @@ namespace WindowsDesktop.Interop.Build22621
         void CurrentVirtualDesktopChanged(IVirtualDesktop pDesktopOld, IVirtualDesktop pDesktopNew);
 
         void VirtualDesktopWallpaperChanged(IVirtualDesktop pDesktop, HString chPath);
-        
+
         void VirtualDesktopSwitched(IVirtualDesktop pDesktop);
-        
+
         void RemoteVirtualDesktopConnected(IVirtualDesktop pDesktop);
     }
 
@@ -78,16 +78,16 @@ namespace WindowsDesktop.Interop.Build22621
         {
             this.WallpaperChangedCore(pDesktop, chPath);
         }
-        
+
         public void VirtualDesktopSwitched(IVirtualDesktop pDesktop)
         {
-            //this.VirtualDesktopSwitchedCore(pDesktop);
+            this.SwitchedCore(pDesktop);
         }
 
         public void RemoteVirtualDesktopConnected(IVirtualDesktop pDesktop)
         {
-            //this.RemoteVirtualDesktopConnectedCore(pDesktop);
+            this.RemoteConnectedCore(pDesktop);
         }
-        
+
     }
 }
