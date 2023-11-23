@@ -1,4 +1,6 @@
-﻿namespace WindowsDesktop.Interop.Proxy;
+﻿using System.Diagnostics;
+
+namespace WindowsDesktop.Interop.Proxy;
 
 [ComInterface]
 public interface IVirtualDesktopNotification
@@ -22,4 +24,8 @@ public interface IVirtualDesktopNotification
     void CurrentVirtualDesktopChanged(IVirtualDesktop pDesktopOld, IVirtualDesktop pDesktopNew);
 
     void VirtualDesktopWallpaperChanged(IVirtualDesktop pDesktop, string chPath);
+
+    void VirtualDesktopSwitched(IVirtualDesktop pDesktop);
+
+    void RemoteVirtualDesktopConnected(IVirtualDesktop pDesktop);
 }

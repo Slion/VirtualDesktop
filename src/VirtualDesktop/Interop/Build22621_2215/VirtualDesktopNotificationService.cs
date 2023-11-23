@@ -62,7 +62,7 @@ public class VirtualDesktopNotificationService : ComWrapperBase<IVirtualDesktopN
 
         protected void MovedCore(object pDesktop, int nIndexFrom, int nIndexTo)
             => this.Notification.VirtualDesktopMoved(this.Wrap(pDesktop), nIndexFrom, nIndexTo);
-        
+
         protected void RenamedCore(object pDesktop, HString chName)
             => this.Notification.VirtualDesktopRenamed(this.Wrap(pDesktop), chName);
 
@@ -74,6 +74,12 @@ public class VirtualDesktopNotificationService : ComWrapperBase<IVirtualDesktopN
 
         protected void WallpaperChangedCore(object pDesktop, HString chPath)
             => this.Notification.VirtualDesktopWallpaperChanged(this.Wrap(pDesktop), chPath);
+
+        protected void SwitchedCore(object pDesktop)
+            => this.Notification.VirtualDesktopSwitched(this.Wrap(pDesktop));
+
+        protected void RemoteConnectedCore(object pDesktop)
+            => this.Notification.RemoteVirtualDesktopConnected(this.Wrap(pDesktop));
 
         private IVirtualDesktop Wrap(object desktop)
             => this.Factory.VirtualDesktop(desktop).Interface;

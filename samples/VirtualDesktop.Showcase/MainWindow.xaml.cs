@@ -232,6 +232,7 @@ partial class MainWindow
             {
                 Debug.WriteLine($"Moved: {it.Index} -> {it.Index - 1}");
                 VirtualDesktop.Current.Move(it.Index - 1);
+                return;
             }
         }
     }
@@ -244,6 +245,7 @@ partial class MainWindow
             {
                 Debug.WriteLine($"Moved: {it.Index} -> {it.Index + 1}");
                 VirtualDesktop.Current.Move(it.Index + 1);
+                return;
             }
         }
     }
