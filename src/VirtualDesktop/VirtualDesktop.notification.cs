@@ -78,7 +78,7 @@ partial class VirtualDesktop
     public static event EventHandler<VirtualDesktopSwitchedEventArgs>? Switched;
 
     /// <summary>
-    /// Occurs when a remote desktop is connected. Should be related to Windows 365 Cloud PC: https://www.microsoft.com/store/productId/9N1F85V9T8BN?ocid=pdpshare.
+    /// Occurs when a remote desktop is connected. Should be related to Windows 365 Cloud PC: https://www.microsoft.com/store/productId/9N1F85V9T8BN.
     /// </summary>
     /// <remarks>
     /// See <see cref="CurrentChanged"/> for details.
