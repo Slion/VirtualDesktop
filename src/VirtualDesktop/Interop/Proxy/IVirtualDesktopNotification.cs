@@ -1,5 +1,3 @@
-﻿using System.Diagnostics;
-
 namespace WindowsDesktop.Interop.Proxy;
 
 [ComInterface]
