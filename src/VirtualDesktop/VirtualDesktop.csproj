@@ -23,6 +23,7 @@
     <Title>Virtual Desktop API for C#</Title>
     <RepositoryType>git</RepositoryType>
     <PackageReleaseNotes>$(PublishReleaseNotes)</PackageReleaseNotes>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net6.0-windows10.0.19041.0|AnyCPU'">
