@@ -106,3 +106,41 @@ public class VirtualDesktopDestroyEventArgs : EventArgs
     {
     }
 }
+
+/// <summary>
+/// Provides data for the <see cref="VirtualDesktop.Switched" /> event.
+/// </summary>
+public class VirtualDesktopSwitchedEventArgs: EventArgs
+{
+    public VirtualDesktop Desktop { get; }
+
+
+    public VirtualDesktopSwitchedEventArgs(VirtualDesktop desktop)
+    {
+        this.Desktop = desktop;
+    }
+
+    internal VirtualDesktopSwitchedEventArgs(IVirtualDesktop desktop)
+        : this(desktop.ToVirtualDesktop())
+    {
+    }
+}
+
+/// <summary>
+/// Provides data for the <see cref="VirtualDesktop.RemoteConnected" /> event.
+/// </summary>
+public class RemoteVirtualDesktopConnectedEventArgs: EventArgs
+{
+    public VirtualDesktop Desktop { get; }
+
+
+    public RemoteVirtualDesktopConnectedEventArgs(VirtualDesktop desktop)
+    {
+        this.Desktop = desktop;
+    }
+
+    internal RemoteVirtualDesktopConnectedEventArgs(IVirtualDesktop desktop)
+        : this(desktop.ToVirtualDesktop())
+    {
+    }
+}

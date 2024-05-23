@@ -2,16 +2,17 @@ name: Publish
 
 on:
   push:
-    branches: [ release ]
+    branches: [ main ]
 
 env:
-  DOTNET_VERSION: 6.0.x
+  DOTNET_VERSION: 8.0.x
   BUILD_TARGET: .\src\VirtualDesktop.sln
 
 jobs:
   build:
     name: .NET Build
     runs-on: windows-latest
+    if: "startsWith(github.event.head_commit.message, 'Release v')"
     
     steps:
     - uses: actions/checkout@v2
@@ -38,7 +39,7 @@ jobs:
     name: Publish to NuGet
     runs-on: windows-latest
     needs: build
-    if: github.ref == 'refs/heads/release'
+    if: "startsWith(github.event.head_commit.message, 'Release v')"
   
     steps:
     - name: Use NuGet

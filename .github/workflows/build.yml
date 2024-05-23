@@ -2,13 +2,13 @@ name: Build
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
   pull_request:
-    branches: [ master ]
+    branches: [ main ]
 
 
 env:
-  DOTNET_VERSION: 6.0.x
+  DOTNET_VERSION: 8.0.x
   BUILD_TARGET: .\src\VirtualDesktop.sln
 
 
@@ -16,6 +16,8 @@ jobs:
   build:
     name: .NET Build
     runs-on: windows-latest
+    # Don't build for release the publish workflow will do that to
+    if: "!startsWith(github.event.head_commit.message, 'Release v')"
     
     steps:
     - uses: actions/checkout@v2

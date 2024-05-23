@@ -1,9 +1,9 @@
-﻿using System;
+﻿﻿using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using WindowsDesktop.Interop.Proxy;
 
-namespace WindowsDesktop.Interop.Build22000;
+namespace WindowsDesktop.Interop.Build20348;
 
 internal class VirtualDesktopManagerInternal : ComWrapperBase<IVirtualDesktopManagerInternal>, IVirtualDesktopManagerInternal
 {
@@ -45,6 +45,10 @@ internal class VirtualDesktopManagerInternal : ComWrapperBase<IVirtualDesktopMan
     public void SwitchDesktop(IVirtualDesktop desktop)
         => this.InvokeMethod(Args(IntPtr.Zero, ((VirtualDesktop)desktop).ComObject));
 
+
+    public void MoveDesktop(IVirtualDesktop pMove, int nIndex)
+        => throw new NotSupportedException();
+
     public void RemoveDesktop(IVirtualDesktop pRemove, IVirtualDesktop pFallbackDesktop)
         => this.InvokeMethod(Args(((VirtualDesktop)pRemove).ComObject, ((VirtualDesktop)pFallbackDesktop).ComObject));
 
@@ -55,10 +59,14 @@ internal class VirtualDesktopManagerInternal : ComWrapperBase<IVirtualDesktopMan
         => this.InvokeMethod(Args(((VirtualDesktop)desktop).ComObject, new HString(name)));
 
     public void SetDesktopWallpaper(IVirtualDesktop desktop, string path)
-        => this.InvokeMethod(Args(((VirtualDesktop)desktop).ComObject, new HString(path)));
+    {
+        //not available in server 2022
+    }
 
     public void UpdateWallpaperPathForAllDesktops(string path)
-        => this.InvokeMethod(Args(new HString(path)));
+    {
+        //not available in server 2022
+    }
 
     private VirtualDesktop InvokeMethodAndWrap(object?[]? parameters = null, [CallerMemberName] string methodName = "")
         => new(this.ComInterfaceAssembly, this.InvokeMethod<object>(parameters, methodName) ?? throw new Exception("Failed to get IVirtualDesktop instance."));

@@ -70,6 +70,22 @@ partial class VirtualDesktop
     public static event EventHandler<VirtualDesktopWallpaperChangedEventArgs>? WallpaperChanged;
 
     /// <summary>
+    /// Occurs when a virtual desktop is switched. Seems duplicate to ViewVirtualDesktopChanged, the difference is not yet known. Both are fired when swtiching.
+    /// </summary>
+    /// <remarks>
+    /// See <see cref="CurrentChanged"/> for details.
+    /// </remarks>
+    public static event EventHandler<VirtualDesktopSwitchedEventArgs>? Switched;
+
+    /// <summary>
+    /// Occurs when a remote desktop is connected. Should be related to Windows 365 Cloud PC: https://www.microsoft.com/store/productId/9N1F85V9T8BN.
+    /// </summary>
+    /// <remarks>
+    /// See <see cref="CurrentChanged"/> for details.
+    /// </remarks>
+    public static event EventHandler<RemoteVirtualDesktopConnectedEventArgs>? RemoteConnected;
+
+    /// <summary>
     /// Register a listener to receive changes in the application view.
     /// </summary>
     /// <param name="targetHwnd">The target window handle to receive events from. If specify <see cref="IntPtr.Zero"/>, all changes will be delivered.</param>
@@ -99,6 +115,12 @@ partial class VirtualDesktop
         public void VirtualDesktopDestroyed(IVirtualDesktop pDesktopDestroyed, IVirtualDesktop pDesktopFallback)
             => Destroyed?.Invoke(this, new VirtualDesktopDestroyEventArgs(pDesktopDestroyed, pDesktopFallback));
 
+        public void VirtualDesktopIsPerMonitorChanged(int i)
+        {
+
+        }
+
+
         public void VirtualDesktopMoved(IVirtualDesktop pDesktop, int nIndexFrom, int nIndexTo)
             => Moved?.Invoke(this, new VirtualDesktopMovedEventArgs(pDesktop, nIndexFrom, nIndexTo));
 
@@ -126,6 +148,12 @@ partial class VirtualDesktop
 
             WallpaperChanged?.Invoke(this, new VirtualDesktopWallpaperChangedEventArgs(desktop, chPath));
         }
+
+        public void VirtualDesktopSwitched(IVirtualDesktop pDesktop) =>
+            Switched?.Invoke(this, new VirtualDesktopSwitchedEventArgs(pDesktop));
+
+        public void RemoteVirtualDesktopConnected(IVirtualDesktop pDesktop) =>
+            RemoteConnected?.Invoke(this, new RemoteVirtualDesktopConnectedEventArgs(pDesktop));
     }
 
     private class ViewChangedListener

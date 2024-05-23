@@ -20,6 +20,8 @@ public interface IVirtualDesktopManagerInternal
 
     IVirtualDesktop CreateDesktop();
 
+    void MoveDesktop(IVirtualDesktop pMove, int nIndex);
+
     void RemoveDesktop(IVirtualDesktop pRemove, IVirtualDesktop pFallbackDesktop);
 
     void SwitchDesktop(IVirtualDesktop desktop);

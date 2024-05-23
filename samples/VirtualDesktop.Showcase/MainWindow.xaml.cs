@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -222,6 +222,32 @@ partial class MainWindow
     private void Remove(object sender, RoutedEventArgs e)
     {
         VirtualDesktop.Current.Remove();
+    }
+
+    private void MoveLeft(object sender, RoutedEventArgs e)
+    {
+        foreach (var it in this.Desktops.Select((x, i) => new { Desktop = x, Index = i }))
+        {
+            if (it.Desktop.IsCurrent && it.Index > 0)
+            {
+                Debug.WriteLine($"Moved: {it.Index} -> {it.Index - 1}");
+                VirtualDesktop.Current.Move(it.Index - 1);
+                return;
+            }
+        }
+    }
+
+    private void MoveRight(object sender, RoutedEventArgs e)
+    {
+        foreach (var it in this.Desktops.Select((x, i) => new { Desktop = x, Index = i }))
+        {
+            if (it.Desktop.IsCurrent && (it.Index < (this.Desktops.Count - 1)))
+            {
+                Debug.WriteLine($"Moved: {it.Index} -> {it.Index + 1}");
+                VirtualDesktop.Current.Move(it.Index + 1);
+                return;
+            }
+        }
     }
 
     private void SwitchDesktop(object sender, RoutedEventArgs e)

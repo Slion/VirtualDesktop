@@ -2,9 +2,15 @@
 
 VirtualDesktop is C# wrapper for [IVirtualDesktopManager](https://msdn.microsoft.com/en-us/library/windows/desktop/mt186440%28v%3Dvs.85%29.aspx) on Windows 11 (and Windows 10).
 
-[![Build](https://github.com/Grabacr07/VirtualDesktop/actions/workflows/build.yml/badge.svg)](https://github.com/Grabacr07/VirtualDesktop/actions/workflows/build.yml)
-[![Nuget (with prereleases)](https://img.shields.io/nuget/vpre/VirtualDesktop)](https://www.nuget.org/packages/VirtualDesktop/)
-[![License](https://img.shields.io/github/license/Grabacr07/VirtualDesktop)](LICENSE)
+[![Build](https://github.com/Slion/VirtualDesktop/workflows/Build/badge.svg)](https://github.com/Slion/VirtualDesktop/actions/workflows/build.yml)
+[![Publish](https://github.com/Slion/VirtualDesktop/workflows/Publish/badge.svg)](https://github.com/Slion/VirtualDesktop/actions/workflows/publish.yml)
+[![License](https://img.shields.io/github/license/Slion/VirtualDesktop)](LICENSE)
+
+| Platform | NuGet |
+| -- | -- |
+| Core | [![NuGet Badge](https://buildstats.info/nuget/Slions.VirtualDesktop)](https://www.nuget.org/packages/Slions.VirtualDesktop/) |
+| Forms | [![NuGet Badge](https://buildstats.info/nuget/Slions.VirtualDesktop.WinForms)](https://www.nuget.org/packages/Slions.VirtualDesktop.WinForms/) |
+| WPF | [![NuGet Badge](https://buildstats.info/nuget/Slions.VirtualDesktop.WPF)](https://www.nuget.org/packages/Slions.VirtualDesktop.WPF/) |
 
 
 ## Features
@@ -28,7 +34,7 @@ VirtualDesktop is C# wrapper for [IVirtualDesktopManager](https://msdn.microsoft
 ```xml
 <TargetFramework>net5.0-windows10.0.19041.0</TargetFramework>
 ```
-* .NET 5 or 6
+* .NET 5, 6 or 7
 * Windows 10 build 19041 (20H1) or later
 
 
@@ -122,10 +128,48 @@ window.MoveToDesktop(desktop);
 window.Pin()
 ```
 
-### See also:
+### Windows version support
+
+The class IDs of some of the undocumented interfaces we use tend to change a lot between different versions of Windows.
+If the demo application crashes on start-up chances are all you need to do is provide the proper IDs for the version of Windows you are running on.
+
+Open `regedit` and export this path into a file: `\HKEY_LOCAL_MACHINE\SOFTWARE\Classes\Interface`.
+Open the resulting reg file and search it for matches against the whole word of each interface name we need:
+
+- `IApplicationView`
+- `IApplicationViewCollection`
+- `IObjectArray`
+- `IServiceProvider`
+- `IVirtualDesktop`
+- `IVirtualDesktopManager`
+- `IVirtualDesktopManagerInternal`
+- `IVirtualDesktopNotification`
+- `IVirtualDesktopNotificationService`
+- `IVirtualDesktopPinnedApps`
+
+Once you have the IDs add them in a new `setting` element in [app.config].
+Make sure to specify the correct 5 digits Windows build version.
+You can get it using one of those methods:
+- From the UI run: `winver`
+- From shell run: `ver`
+- From powershell run: `cmd /c ver`
+
+Make sure to contribute back your changes.
+
+### Publish
+
+To publish a new release specify your version in [Directory.Build.props] and push the changes with a commit description such as:
+`Release vx.y.z` where `x`, `y`, `z` form your version number. That should publish it on NuGet providing that your secret `NUGET_API_KEY` is still valid.
+
+### Resources
 * [samples/README.md](samples/README.md)
+* [StackOverflow](https://stackoverflow.com/questions/32416843/programmatic-control-of-virtual-desktops-in-windows-10)
 
 
 ## License
 
 This library is under [the MIT License](https://github.com/Grabacr07/VirtualDesktop/blob/master/LICENSE).
+
+
+[app.config]: src/VirtualDesktop/app.config
+[Directory.Build.props]: src/Directory.Build.props

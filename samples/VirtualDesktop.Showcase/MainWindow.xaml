@@ -38,6 +38,10 @@
                                 Click="SwitchRight" />
                         <Button Content="Remove"
                                 Click="Remove" />
+                        <Button Content="Move left"
+                                Click="MoveLeft" />
+                        <Button Content="Move right"
+                                Click="MoveRight" />
                     </StackPanel>
                 </GroupBox>
 

@@ -1,19 +1,20 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net6.0-windows10.0.19041.0;net5.0-windows10.0.19041.0</TargetFrameworks>
+    <TargetFrameworks>net8.0-windows10.0.19041.0;net7.0-windows10.0.19041.0;net6.0-windows10.0.19041.0;net5.0-windows10.0.19041.0</TargetFrameworks>
+	  <PackageId>Slions.VirtualDesktop.WinForms</PackageId>
     <LangVersion>latest</LangVersion>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <Version>5.0.5</Version>
+    <Version>$(PublishVersion)</Version>
     <Product>VirtualDesktop</Product>
-    <Authors>Grabacr07</Authors>
-    <Company>grabacr.net</Company>
+    <Authors>$(PublishAuthors)</Authors>
+    <Company>slions.net</Company>
     <Copyright>Copyright © 2022 Manato KAMEYA</Copyright>
     <Description>C# Wrapper for the Virtual Desktop API on Windows 11 (and Windows 10).</Description>
-    <RepositoryUrl>https://github.com/Grabacr07/VirtualDesktop</RepositoryUrl>
-    <PackageProjectUrl>https://github.com/Grabacr07/VirtualDesktop</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Slion/VirtualDesktop</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/Slion/VirtualDesktop</PackageProjectUrl>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageTags>Windows;Windows10;Windows11;Desktop;VirtualDesktop;</PackageTags>

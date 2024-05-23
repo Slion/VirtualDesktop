@@ -150,6 +150,16 @@ public partial class VirtualDesktop
     }
 
     /// <summary>
+    /// Move the given desktop to another posision.
+    /// </summary>
+    public void Move(int index)
+    {
+        if (index < 0 || index >= GetDesktops().Count()) throw new Exception($"Invalid index: {index}");
+
+        _provider.VirtualDesktopManagerInternal.MoveDesktop(this._source, index);
+    }
+
+    /// <summary>
     /// Returns a virtual desktop matching the specified identifier.
     /// </summary>
     /// <param name="desktopId">The identifier of the virtual desktop to return.</param>

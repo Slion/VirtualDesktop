@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using WindowsDesktop.Interop.Build10240;
+﻿using WindowsDesktop.Interop.Build10240;
 using WindowsDesktop.Interop.Proxy;
-using WindowsDesktop.Properties;
 
-namespace WindowsDesktop.Interop.Build22000;
+namespace WindowsDesktop.Interop.Build22621;
 
-internal class VirtualDesktopProvider22000 : VirtualDesktopProvider
+internal class VirtualDesktopProvider22621 : VirtualDesktopProvider
 {
     private IVirtualDesktopManager? _virtualDesktopManager;
     private ApplicationViewCollection? _applicationViewCollection;
