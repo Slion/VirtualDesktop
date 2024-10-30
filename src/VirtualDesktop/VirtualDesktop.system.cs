@@ -9,6 +9,7 @@ using WindowsDesktop.Interop.Build10240;
 using WindowsDesktop.Interop.Build20348;
 using WindowsDesktop.Interop.Build22000;
 using WindowsDesktop.Interop.Build22621;
+using WindowsDesktop.Interop.Build26100;
 using WindowsDesktop.Interop.Proxy;
 using WindowsDesktop.Properties;
 using WindowsDesktop.Utils;
@@ -52,6 +53,11 @@ partial class VirtualDesktop
     private static VirtualDesktopProvider CreateProvider()
     {
         Version v = OS.Build;
+
+        if (v >= new Version(10, 0, 26100, 0))
+        {
+            return new VirtualDesktopProvider26100();
+        }
 
         if (v >= new Version(10, 0, 22621, 2215))
         {
