@@ -67,6 +67,10 @@
     <EmbeddedResource Include="Interop\Build22000_0000\.interfaces\IVirtualDesktopManagerInternal.cs" />
     <EmbeddedResource Include="Interop\Build22000_0000\.interfaces\IVirtualDesktopNotification.cs" />
     <EmbeddedResource Include="Interop\Build22000_0000\.interfaces\IVirtualDesktopNotificationService.cs" />
+    <EmbeddedResource Include="Interop\Build26100_0000\.interfaces\IVirtualDesktop.cs" />
+    <EmbeddedResource Include="Interop\Build26100_0000\.interfaces\IVirtualDesktopManagerInternal.cs" />
+    <EmbeddedResource Include="Interop\Build26100_0000\.interfaces\IVirtualDesktopNotification.cs" />
+    <EmbeddedResource Include="Interop\Build26100_0000\.interfaces\IVirtualDesktopNotificationService.cs" />
     <None Include="..\..\LICENSE">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
