@@ -1,8 +1,11 @@
 <Project>
 	<PropertyGroup>
-		<PublishVersion>6.9.0</PublishVersion>
+		<PublishVersion>6.9.1</PublishVersion>
 		<PublishAuthors>Grabacr07, maciej-makowski, mzomparelli, Slion</PublishAuthors>
 		<PublishReleaseNotes>
+			v6.9.1
+			Description update
+
 			v6.9.0
 			Minor documentation fix
 
