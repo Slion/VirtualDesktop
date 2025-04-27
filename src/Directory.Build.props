@@ -1,35 +1,39 @@
 <Project>
 	<PropertyGroup>
-		<PublishVersion>6.6.0</PublishVersion>
+		<PublishVersion>6.7.0</PublishVersion>
 		<PublishAuthors>Grabacr07, maciej-makowski, mzomparelli, Slion</PublishAuthors>
 		<PublishReleaseNotes>
-      v6.6.0
-      Support OS Build 22631.3155
-      Support OS Build 22621.3155
+			v6.7.0
+			Support OS Build 26100.0000
+			Support single file app
 
-      v6.5.0
-      Support for .NET 8.0
+			v6.6.0
+			Support OS Build 22631.3155
+			Support OS Build 22621.3155
 
-      v6.4.0
-      Fix crash when changing desktop
+			v6.5.0
+			Support for .NET 8.0
 
-      v6.3.0
-      Desktop move support
+			v6.4.0
+			Fix crash when changing desktop
 
-      v6.2.1
-      Add mzomparelli to list of authors
+			v6.3.0
+			Desktop move support
 
-      v6.2.0
-      Better OS version resolution
+			v6.2.1
+			Add mzomparelli to list of authors
 
-      v6.1.0
-      Support OS Build 20348.1906
+			v6.2.0
+			Better OS version resolution
 
-      v6.0.0
-      Support OS Build 22621.2215
+			v6.1.0
+			Support OS Build 20348.1906
 
-      v5.2.0
-      Support for .NET 7.0
-    </PublishReleaseNotes>
+			v6.0.0
+			Support OS Build 22621.2215
+
+			v5.2.0
+			Support for .NET 7.0
+		</PublishReleaseNotes>
 	</PropertyGroup>
 </Project>
