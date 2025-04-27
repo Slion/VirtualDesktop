@@ -1,6 +1,9 @@
 # VirtualDesktop
 
-VirtualDesktop is C# wrapper for [IVirtualDesktopManager](https://msdn.microsoft.com/en-us/library/windows/desktop/mt186440%28v%3Dvs.85%29.aspx) on Windows 11 (and Windows 10).
+.NET library enabling Windows multiple desktop operations
+
+[![Windows 11](https://img.shields.io/badge/Windows_11-supported-dodgerblue)](https://www.microsoft.com/en-us/windows/learning-center/stay-organized-using-multiple-desktops-windows-11) <br>
+[![Windows 10](https://img.shields.io/badge/Windows_10-supported-dodgerblue)](https://support.microsoft.com/en-us/windows/configure-multiple-desktops-in-windows-36f52e38-5b4a-557b-2ff9-e1a60c976434)
 
 [![Build](https://github.com/Slion/VirtualDesktop/workflows/Build/badge.svg)](https://github.com/Slion/VirtualDesktop/actions/workflows/build.yml)
 [![Publish](https://github.com/Slion/VirtualDesktop/workflows/Publish/badge.svg)](https://github.com/Slion/VirtualDesktop/actions/workflows/publish.yml)
@@ -32,9 +35,11 @@ VirtualDesktop is C# wrapper for [IVirtualDesktopManager](https://msdn.microsoft
 ## Requirements
 
 ```xml
-<TargetFramework>net5.0-windows10.0.19041.0</TargetFramework>
+<TargetFramework>net6.0-windows10.0.19041.0</TargetFramework>
 ```
-* .NET 5, 6 or 7
+* .NET 6.0
+* .NET 7.0
+* .NET 8.0
 * Windows 10 build 19041 (20H1) or later
 
 
@@ -46,9 +51,9 @@ Install NuGet package(s).
 PM> Install-Package VirtualDesktop
 ```
 
-* [VirtualDesktop](https://www.nuget.org/packages/VirtualDesktop/) - Core classes for VirtualDesktop.
-* [VirtualDesktop.WPF](https://www.nuget.org/packages/VirtualDesktop.WPF/) - Provides extension methods for WPF [Window class](https://msdn.microsoft.com/en-us/library/system.windows.window(v=vs.110).aspx).
-* [VirtualDesktop.WinForms](https://www.nuget.org/packages/VirtualDesktop.WinForms/) - Provides extension methods for [Form class](https://msdn.microsoft.com/en-us/library/system.windows.forms.form(v=vs.110).aspx).
+* [VirtualDesktop](https://www.nuget.org/packages/Slions.VirtualDesktop/) - Core classes for VirtualDesktop.
+* [VirtualDesktop.WPF](https://www.nuget.org/packages/Slions.VirtualDesktop.WPF/) - Provides extension methods for WPF [Window class](https://msdn.microsoft.com/en-us/library/system.windows.window(v=vs.110).aspx).
+* [VirtualDesktop.WinForms](https://www.nuget.org/packages/Slions.VirtualDesktop.WinForms/) - Provides extension methods for [Form class](https://msdn.microsoft.com/en-us/library/system.windows.forms.form(v=vs.110).aspx).
 
 
 ## How to use
@@ -156,15 +161,20 @@ You can get it using one of those methods:
 
 Make sure to contribute back your changes.
 
-### Publish
+## Publish
 
 To publish a new release specify your version in [Directory.Build.props] and push the changes with a commit description such as:
 `Release vx.y.z` where `x`, `y`, `z` form your version number. That should publish it on NuGet providing that your secret `NUGET_API_KEY` is still valid.
 
-### Resources
+## Internals
+
+Essentially a C# wrapper for [IVirtualDesktopManager](https://msdn.microsoft.com/en-us/library/windows/desktop/mt186440%28v%3Dvs.85%29.aspx) and related undocumented interfaces.
+However in order to support breaking binary changes between Windows versions we perform runtime compilation of a DLL providing access to the COM interfaces matching your OS build version.
+
+## Resources
 * [samples/README.md](samples/README.md)
 * [StackOverflow](https://stackoverflow.com/questions/32416843/programmatic-control-of-virtual-desktops-in-windows-10)
-
+* [Upstream repository](https://github.com/Grabacr07/VirtualDesktop) - unmaintained
 
 ## License
 
@@ -173,3 +183,8 @@ This library is under [the MIT License](https://github.com/Grabacr07/VirtualDesk
 
 [app.config]: src/VirtualDesktop/app.config
 [Directory.Build.props]: src/Directory.Build.props
+
+## Credits
+
+* Thanks @Grabacr07 for creating this great piece of software
+* All contributors for sharing your work with the community
