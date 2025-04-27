@@ -189,5 +189,5 @@ This library is under [the MIT License](https://github.com/Grabacr07/VirtualDesk
 
 ## Credits
 
-* Thanks @Grabacr07 for creating this great piece of software
+* Thanks [@Grabacr07](https://github.com/Grabacr07) for creating this great piece of software
 * All contributors for sharing your work with the community
