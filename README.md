@@ -170,7 +170,7 @@ To publish a new release specify your version in [Directory.Build.props] and pus
 ## Internals
 
 Essentially a C# wrapper for [IVirtualDesktopManager](https://msdn.microsoft.com/en-us/library/windows/desktop/mt186440%28v%3Dvs.85%29.aspx) and related undocumented interfaces.
-However in order to support breaking binary changes between Windows versions we perform runtime compilation of a DLL providing access to the COM interfaces matching your OS build version.
+In order to support breaking binary changes between Windows versions we perform runtime compilation of a DLL providing access to the COM interfaces matching your OS build version.
 
 ## Resources
 * [samples/README.md](samples/README.md)
