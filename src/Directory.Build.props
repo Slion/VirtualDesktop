@@ -1,8 +1,11 @@
 <Project>
 	<PropertyGroup>
-		<PublishVersion>6.7.0</PublishVersion>
+		<PublishVersion>6.8.0</PublishVersion>
 		<PublishAuthors>Grabacr07, maciej-makowski, mzomparelli, Slion</PublishAuthors>
 		<PublishReleaseNotes>
+			v6.8.0
+			Documentation updates
+			
 			v6.7.0
 			Support OS Build 26100.0000
 			Support single file app
