@@ -15,10 +15,10 @@ jobs:
     if: "startsWith(github.event.head_commit.message, 'Release v')"
     
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     
     - name: Use .NET ${{ env.DOTNET_VERSION }}
-      uses: actions/setup-dotnet@v1
+      uses: actions/setup-dotnet@v4
       with:
         dotnet-version: ${{ env.DOTNET_VERSION }}
       
@@ -29,7 +29,7 @@ jobs:
       run: dotnet pack ${{ env.BUILD_TARGET }} -c Release --no-build
 
     - name: Upload artifacts
-      uses: actions/upload-artifact@v2.3.1
+      uses: actions/upload-artifact@v4
       with:
         name: nuget-packages
         path: "**/*.nupkg"
@@ -43,13 +43,13 @@ jobs:
   
     steps:
     - name: Use NuGet
-      uses: NuGet/setup-nuget@v1.0.5
+      uses: NuGet/setup-nuget@v2
       with:
         nuget-version: latest
         nuget-api-key: ${{ secrets.NUGET_API_KEY }}
 
     - name: Fetch artifacts
-      uses: actions/download-artifact@v2.1.0
+      uses: actions/download-artifact@v4
       with:
         name: nuget-packages
 
