@@ -2,7 +2,7 @@
 
 .NET library enabling Windows multiple desktop operations
 
-[![Windows 11](https://img.shields.io/badge/Windows_11-supported-dodgerblue)](https://www.microsoft.com/en-us/windows/learning-center/stay-organized-using-multiple-desktops-windows-11) <br>
+[![Windows 11](https://img.shields.io/badge/Windows_11-supported-dodgerblue)](https://www.microsoft.com/en-us/windows/learning-center/stay-organized-using-multiple-desktops-windows-11)
 [![Windows 10](https://img.shields.io/badge/Windows_10-supported-dodgerblue)](https://support.microsoft.com/en-us/windows/configure-multiple-desktops-in-windows-36f52e38-5b4a-557b-2ff9-e1a60c976434)
 
 [![Build](https://github.com/Slion/VirtualDesktop/workflows/Build/badge.svg)](https://github.com/Slion/VirtualDesktop/actions/workflows/build.yml)
