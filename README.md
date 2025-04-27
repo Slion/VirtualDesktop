@@ -6,11 +6,11 @@ VirtualDesktop is C# wrapper for [IVirtualDesktopManager](https://msdn.microsoft
 [![Publish](https://github.com/Slion/VirtualDesktop/workflows/Publish/badge.svg)](https://github.com/Slion/VirtualDesktop/actions/workflows/publish.yml)
 [![License](https://img.shields.io/github/license/Slion/VirtualDesktop)](LICENSE)
 
-| Platform | NuGet |
-| -- | -- |
-| Core | [![NuGet Badge](https://buildstats.info/nuget/Slions.VirtualDesktop)](https://www.nuget.org/packages/Slions.VirtualDesktop/) |
-| Forms | [![NuGet Badge](https://buildstats.info/nuget/Slions.VirtualDesktop.WinForms)](https://www.nuget.org/packages/Slions.VirtualDesktop.WinForms/) |
-| WPF | [![NuGet Badge](https://buildstats.info/nuget/Slions.VirtualDesktop.WPF)](https://www.nuget.org/packages/Slions.VirtualDesktop.WPF/) |
+| Platform | NuGet | Downloads |
+| -- | -- |  -- |
+| Core | [![NuGet Badge](https://img.shields.io/nuget/v/Slions.VirtualDesktop)](https://www.nuget.org/packages/Slions.VirtualDesktop/) | [![NuGet Downloads](https://img.shields.io/nuget/dt/Slions.VirtualDesktop)](https://www.nuget.org/packages/Slions.VirtualDesktop/) |
+| Forms | [![NuGet Badge](https://img.shields.io/nuget/v/Slions.VirtualDesktop.WinForms)](https://www.nuget.org/packages/Slions.VirtualDesktop.WinForms/)| [![NuGet Downloads](https://img.shields.io/nuget/dt/Slions.VirtualDesktop.WinForms)](https://www.nuget.org/packages/Slions.VirtualDesktop.WinForms/) |
+| WPF | [![NuGet Badge](https://img.shields.io/nuget/v/Slions.VirtualDesktop.WPF)](https://www.nuget.org/packages/Slions.VirtualDesktop.WPF/) | [![NuGet Downloads](https://img.shields.io/nuget/dt/Slions.VirtualDesktop.WPF)](https://www.nuget.org/packages/Slions.VirtualDesktop.WPF/) |
 
 
 ## Features
