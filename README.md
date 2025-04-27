@@ -135,11 +135,12 @@ window.Pin()
 
 ### Windows version support
 
+Since this library is using undocumented interfaces you need to properly [reverse engineer](#14) your Windows version to support it.
+
 The class IDs of some of the undocumented interfaces we use tend to change a lot between different versions of Windows.
 If the demo application crashes on start-up chances are all you need to do is provide the proper IDs for the version of Windows you are running on.
 
-Open `regedit` and export this path into a file: `\HKEY_LOCAL_MACHINE\SOFTWARE\Classes\Interface`.
-Open the resulting reg file and search it for matches against the whole word of each interface name we need:
+Here are the interfaces we need:
 
 - `IApplicationView`
 - `IApplicationViewCollection`
@@ -175,6 +176,8 @@ However in order to support breaking binary changes between Windows versions we 
 * [samples/README.md](samples/README.md)
 * [StackOverflow](https://stackoverflow.com/questions/32416843/programmatic-control-of-virtual-desktops-in-windows-10)
 * [Upstream repository](https://github.com/Grabacr07/VirtualDesktop) - unmaintained
+* [VirtualDesktop command line tool](https://github.com/MScholtes/VirtualDesktop) - not using this library
+* [VirtualDesktop AutoHotKey DLL](https://github.com/Ciantic/VirtualDesktopAccessor)
 
 ## License
 
