@@ -135,7 +135,7 @@ window.Pin()
 
 ### Windows version support
 
-Since this library is using undocumented interfaces you need to properly [reverse engineer](#14) your Windows version to support it.
+Since this library is using undocumented interfaces you need to properly [reverse engineer](https://github.com/Slion/VirtualDesktop/issues/14) your Windows version to support it.
 
 The class IDs of some of the undocumented interfaces we use tend to change a lot between different versions of Windows.
 If the demo application crashes on start-up chances are all you need to do is provide the proper IDs for the version of Windows you are running on.
