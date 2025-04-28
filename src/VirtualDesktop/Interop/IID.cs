@@ -39,6 +39,7 @@ internal static class IID
             .OrderByDescending(s => s.osBuild)
             .ToArray();
 
+        // TODO: Select per major version first?
         // Find first prop with build version <= current OS version
         var selectedSettings = orderedProps.FirstOrDefault(p =>
             p.osBuild <= OS.Build
