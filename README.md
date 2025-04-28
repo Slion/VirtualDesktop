@@ -1,6 +1,6 @@
 # VirtualDesktop
 
-.NET library enabling Windows multiple desktop operations
+.NET library for Windows multiple desktop operations
 
 [![Windows 11](https://img.shields.io/badge/Windows_11-supported-dodgerblue)](https://www.microsoft.com/en-us/windows/learning-center/stay-organized-using-multiple-desktops-windows-11)
 [![Windows 10](https://img.shields.io/badge/Windows_10-supported-dodgerblue)](https://support.microsoft.com/en-us/windows/configure-multiple-desktops-in-windows-36f52e38-5b4a-557b-2ff9-e1a60c976434)
@@ -18,13 +18,11 @@
 
 ## Features
 
-* Switch, add, and remove a virtual desktop.
-* Move the window in the same process to any virtual desktop.
-* Move the window of another process to any virtual desktop (Support in version 2.0 or later).
-* Pin any window or application; will be display on all desktops.
-* Notification for switching, deletion, renaming, etc.
-* Change the wallpaper for each desktop.
-
+* Switch, add, and remove a virtual desktop
+* Move any window to any virtual desktop
+* Pin any window or application for them to show on all desktops
+* Notifications when switching, deleting, or renaming virtual desktops
+* Change the wallpaper for each desktop
 
 ### Sample app
 
@@ -51,23 +49,20 @@ Install NuGet package(s).
 PM> Install-Package VirtualDesktop
 ```
 
-* [VirtualDesktop](https://www.nuget.org/packages/Slions.VirtualDesktop/) - Core classes for VirtualDesktop.
-* [VirtualDesktop.WPF](https://www.nuget.org/packages/Slions.VirtualDesktop.WPF/) - Provides extension methods for WPF [Window class](https://msdn.microsoft.com/en-us/library/system.windows.window(v=vs.110).aspx).
-* [VirtualDesktop.WinForms](https://www.nuget.org/packages/Slions.VirtualDesktop.WinForms/) - Provides extension methods for [Form class](https://msdn.microsoft.com/en-us/library/system.windows.forms.form(v=vs.110).aspx).
+* [VirtualDesktop] - Core classes for VirtualDesktop.
+* [VirtualDesktop.WPF] - Provides extension methods for [WPF Window class].
+* [VirtualDesktop.WinForms] - Provides extension methods for [Form class].
 
 
 ## How to use
 
 ### Preparation
-Because of the dependency on [C#/WinRT](https://aka.ms/cswinrt) ([repo](https://github.com/microsoft/CsWinRT)), the target framework must be set to `net5.0-windows10.0.19041.0` or later.
-```xml
-<TargetFramework>net5.0-windows10.0.19041.0</TargetFramework>
-```
+Because of the dependency on [C#/WinRT], the target framework must be set to `net6.0-windows10.0.19041.0` or later.
 ```xml
 <TargetFramework>net6.0-windows10.0.19041.0</TargetFramework>
 ```
 
-If it doesn't work, try creating an `app.manifest` file and optimize to work on Windows 10.
+If it does not work, try creating an `app.manifest` file optimized to work on Windows 10.
 ```xml
 <compatibility xmlns="urn:schemas-microsoft-com:compatibility.v1">
     <application>
@@ -135,10 +130,10 @@ window.Pin()
 
 ### Windows version support
 
-Since this library is using undocumented interfaces you need to properly [reverse engineer](https://github.com/Slion/VirtualDesktop/issues/14) your Windows version to support it.
+Since this library is using undocumented interfaces, you need to [reverse engineer] your Windows version to support it.
 
-The class IDs of some of the undocumented interfaces we use tend to change a lot between different versions of Windows.
-If the demo application crashes on start-up chances are all you need to do is provide the proper IDs for the version of Windows you are running on.
+The class IDs of undocumented interfaces tend to change between different OS versions.
+If the demo application crashes on start-up, you will need to provide the interfaces' IDs matching your Windows version.
 
 Here are the interfaces we need:
 
@@ -153,14 +148,14 @@ Here are the interfaces we need:
 - `IVirtualDesktopNotificationService`
 - `IVirtualDesktopPinnedApps`
 
-Once you have the IDs add them in a new `setting` element in [app.config].
-Make sure to specify the correct 5 digits Windows build version.
+Once you have those IDs, add them in a new `setting` element in [app.config].
+Make sure to specify the correct 9 digits Windows build and cumulative update version.
 You can get it using one of those methods:
 - From the UI run: `winver`
 - From shell run: `ver`
 - From powershell run: `cmd /c ver`
 
-Make sure to contribute back your changes.
+Don't forget to contribute back your changes.
 
 ## Publish
 
@@ -169,7 +164,7 @@ To publish a new release specify your version in [Directory.Build.props] and pus
 
 ## Internals
 
-Essentially a C# wrapper for [IVirtualDesktopManager](https://msdn.microsoft.com/en-us/library/windows/desktop/mt186440%28v%3Dvs.85%29.aspx) and related undocumented interfaces.
+This library is essentially a C# wrapper for [IVirtualDesktopManager] and related undocumented interfaces.
 In order to support breaking binary changes between Windows versions we perform runtime compilation of a DLL providing access to the COM interfaces matching your OS build version.
 
 ## Resources
@@ -178,10 +173,11 @@ In order to support breaking binary changes between Windows versions we perform 
 * [Upstream repository](https://github.com/Grabacr07/VirtualDesktop) - unmaintained
 * [VirtualDesktop command line tool](https://github.com/MScholtes/VirtualDesktop) - not using this library
 * [VirtualDesktop AutoHotKey DLL](https://github.com/Ciantic/VirtualDesktopAccessor)
+* [C#/WinRT repository](https://github.com/microsoft/CsWinRT)
 
 ## License
 
-This library is under [the MIT License](https://github.com/Grabacr07/VirtualDesktop/blob/master/LICENSE).
+This library is under the [MIT License].
 
 
 [app.config]: src/VirtualDesktop/app.config
@@ -189,5 +185,17 @@ This library is under [the MIT License](https://github.com/Grabacr07/VirtualDesk
 
 ## Credits
 
-* Thanks [@Grabacr07](https://github.com/Grabacr07) for creating this great piece of software
+* Thanks [@Grabacr07] for creating this great piece of software
 * All contributors for sharing your work with the community
+
+
+[VirtualDesktop]: https://www.nuget.org/packages/Slions.VirtualDesktop/
+[VirtualDesktop.WPF]: https://www.nuget.org/packages/Slions.VirtualDesktop.WPF/
+[VirtualDesktop.WinForms]: https://www.nuget.org/packages/Slions.VirtualDesktop.WinForms/
+[WPF Window class]: https://msdn.microsoft.com/en-us/library/system.windows.window(v=vs.110).aspx
+[Form class]: https://msdn.microsoft.com/en-us/library/system.windows.forms.form(v=vs.110).aspx
+[C#/WinRT]: https://aka.ms/cswinrt
+[reverse engineer]: https://github.com/Slion/VirtualDesktop/issues/14
+[IVirtualDesktopManager]: https://msdn.microsoft.com/en-us/library/windows/desktop/mt186440%28v%3Dvs.85%29.aspx
+[MIT License]: https://github.com/Grabacr07/VirtualDesktop/blob/master/LICENSE
+[@Grabacr07]: https://github.com/Grabacr07

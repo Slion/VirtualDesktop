@@ -12,7 +12,7 @@
     <Authors>$(PublishAuthors)</Authors>
     <Company>slions.net</Company>
     <Copyright>Copyright © 2022 Manato KAMEYA</Copyright>
-    <Description>.NET library enabling Windows multiple desktop operations</Description>
+    <Description>.NET library for Windows multiple desktop operations</Description>
     <RepositoryUrl>https://github.com/Slion/VirtualDesktop</RepositoryUrl>
     <PackageProjectUrl>https://github.com/Slion/VirtualDesktop</PackageProjectUrl>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
